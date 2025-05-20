@@ -1,0 +1,722 @@
+<?php
+// Dados pessoais
+$nome = "Mateus Henrique dos Santos Silva";
+$telefone = "(62) 99940-2636";
+$email = "mh37196@gmail.com";
+$localizacao = "Anápolis, Goiás, BR";
+$linkedin = ""; // Adicione seu LinkedIn aqui
+$github = ""; // Adicione seu GitHub aqui
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - <?php echo $nome; ?></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Cabeçalho moderno */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-item i {
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Conteúdo principal */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            height: fit-content;
+        }
+
+        .sidebar .section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            position: relative;
+        }
+
+        .sidebar h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #e74c3c;
+        }
+
+        /* Habilidades modernas */
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+            transform: translateX(4px);
+        }
+
+        /* Idiomas */
+        .languages-list {
+            list-style: none;
+        }
+
+        .languages-list li {
+            background: white;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .language-level {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        /* Conteúdo principal */
+        .content {
+            padding-left: 20px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #3498db, #e74c3c);
+            border-radius: 2px;
+        }
+
+        /* Objetivo */
+        .objective {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #3498db;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #34495e;
+            position: relative;
+        }
+
+        .objective::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 3em;
+            color: #3498db;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        /* Experiência e Educação */
+        .timeline-item {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-item:hover {
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .timeline-item h4 {
+            color: #2c3e50;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item .company {
+            color: #3498db;
+            font-weight: 500;
+            font-size: 1.05em;
+            margin-bottom: 6px;
+        }
+
+        .timeline-item .date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timeline-item .date i {
+            color: #e74c3c;
+        }
+
+        .timeline-item ul {
+            margin-left: 20px;
+            color: #34495e;
+        }
+
+        .timeline-item li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .timeline-item li::marker {
+            color: #3498db;
+        }
+
+        /* Botões de ação */
+        .action-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .action-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .action-btn.secondary:hover {
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                padding: 25px;
+                gap: 30px;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .content {
+                padding-left: 0;
+                order: 1;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Animações sutis */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Estilos de impressão */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                margin: 0;
+            }
+            
+            .action-buttons {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="header-content">
+                <h1><?php echo $nome; ?></h1>
+                <p class="subtitle">Desenvolvedor | Profissional em Tecnologia</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:<?php echo str_replace(['(', ')', ' ', '-'], '', $telefone); ?>"><?php echo $telefone; ?></a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><?php echo $localizacao; ?></span>
+                    </div>
+                    <?php if(!empty($linkedin)): ?>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="<?php echo $linkedin; ?>" target="_blank">LinkedIn</a>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </header>
+
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Habilidades Técnicas -->
+                <div class="section">
+                    <h3><i class="fas fa-code"></i> Habilidades Técnicas</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">PHP & Laravel</div>
+                        <div class="skill-item">JavaScript & Node.js</div>
+                        <div class="skill-item">HTML5 & CSS3</div>
+                        <div class="skill-item">MySQL & PostgreSQL</div>
+                        <div class="skill-item">Git & GitHub</div>
+                        <div class="skill-item">React & Vue.js</div>
+                        <div class="skill-item">Docker & AWS</div>
+                    </div>
+                </div>
+
+                <!-- Habilidades Pessoais -->
+                <div class="section">
+                    <h3><i class="fas fa-users"></i> Competências</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">Liderança de Equipe</div>
+                        <div class="skill-item">Comunicação Eficaz</div>
+                        <div class="skill-item">Resolução de Problemas</div>
+                        <div class="skill-item">Gestão de Projetos</div>
+                        <div class="skill-item">Pensamento Analítico</div>
+                    </div>
+                </div>
+
+                <!-- Idiomas -->
+                <div class="section">
+                    <h3><i class="fas fa-globe"></i> Idiomas</h3>
+                    <ul class="languages-list">
+                        <li>
+                            <span>Português</span>
+                            <span class="language-level">Nativo</span>
+                        </li>
+                        <li>
+                            <span>Inglês</span>
+                            <span class="language-level">Intermediário</span>
+                        </li>
+                        <li>
+                            <span>Espanhol</span>
+                            <span class="language-level">Básico</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Conteúdo principal -->
+            <main class="content">
+                <!-- Objetivo -->
+                <section class="section">
+                    <h2>Perfil Profissional</h2>
+                    <div class="objective">
+                        Profissional dedicado e apaixonado por tecnologia, com foco em desenvolvimento de soluções inovadoras e eficientes. Busco constantemente aprender novas tecnologias e metodologias para entregar resultados excepcionais. Tenho forte interesse em trabalhar em equipes colaborativas donde possa contribuir significativamente para o sucesso dos projetos.
+                    </div>
+                </section>
+
+                <!-- Experiência Profissional -->
+                <section class="section">
+                    <h2>Experiência Profissional</h2>
+                    
+                    <div class="timeline-item">
+                        <h4>Desenvolvedor Full Stack</h4>
+                        <div class="company">Nome da Empresa</div>
+                        <div class="date">
+                            <i class="fas fa-calendar-alt"></i>
+                            Janeiro 2023 - Presente
+                        </div>
+                        <ul>
+                            <li>Desenvolvimento de aplicações web utilizando PHP, JavaScript e MySQL</li>
+                            <li>Implementação de APIs RESTful e integração com sistemas terceiros</li>
+                            <li>Colaboração com equipe multidisciplinar em metodologia Agile/Scrum</li>
+                            <li>Otimização de performance e melhoria da experiência do usuário</li>
+                            <li>Manutenção e evolução de sistemas legados</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Desenvolvedor Junior</h4>
+                        <div class="company">Empresa Anterior</div>
+                        <div class="date">
+                            <i class="fas fa-calendar-alt"></i>
+                            Março 2022 - Dezembro 2022
+                        </div>
+                        <ul>
+                            <li>Suporte no desenvolvimento de funcionalidades para sistema web</li>
+                            <li>Correção de bugs e implementação de melhorias</li>
+                            <li>Participação em code reviews e documentação técnica</li>
+                            <li>Aprendizado contínuo de novas tecnologias e frameworks</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Formação -->
+                <section class="section">
+                    <h2>Formação Acadêmica</h2>
+                    
+                    <div class="timeline-item">
+                        <h4>Bacharelado em Ciência da Computação</h4>
+                        <div class="company">Universidade Federal de Goiás</div>
+                        <div class="date">
+                            <i class="fas fa-graduation-cap"></i>
+                            2019 - 2023
+                        </div>
+                        <ul>
+                            <li>Formação sólida em algoritmos, estruturas de dados e programação</li>
+                            <li>Projetos acadêmicos em desenvolvimento web e mobile</li>
+                            <li>Trabalho de conclusão de curso em Inteligência Artificial</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Curso Técnico em Informática</h4>
+                        <div class="company">Instituto Federal de Goiás</div>
+                        <div class="date">
+                            <i class="fas fa-graduation-cap"></i>
+                            2017 - 2018
+                        </div>
+                        <ul>
+                            <li>Fundamentos de programação e banco de dados</li>
+                            <li>Desenvolvimento de sistemas desktop e web básicos</li>
+                            <li>Redes de computadores e infraestrutura de TI</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Certificações -->
+                <section class="section">
+                    <h2>Certificações e Cursos</h2>
+                    
+                    <div class="timeline-item">
+                        <h4>AWS Certified Cloud Practitioner</h4>
+                        <div class="company">Amazon Web Services</div>
+                        <div class="date">
+                            <i class="fas fa-certificate"></i>
+                            Dezembro 2023
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>Curso de Laravel Avançado</h4>
+                        <div class="company">Rocketseat</div>
+                        <div class="date">
+                            <i class="fas fa-certificate"></i>
+                            Outubro 2023
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>JavaScript ES6+ Completo</h4>
+                        <div class="company">Udemy</div>
+                        <div class="date">
+                            <i class="fas fa-certificate"></i>
+                            Agosto 2023
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projetos -->
+                <section class="section">
+                    <h2>Projetos Destacados</h2>
+                    
+                    <div class="timeline-item">
+                        <h4>Sistema de Gestão Empresarial</h4>
+                        <div class="company">Projeto Pessoal</div>
+                        <div class="date">
+                            <i class="fas fa-code-branch"></i>
+                            2023
+                        </div>
+                        <ul>
+                            <li>Sistema completo desenvolvido com Laravel e Vue.js</li>
+                            <li>Módulos de vendas, estoque, financeiro e relatórios</li>
+                            <li>API RESTful e dashboard analítico</li>
+                            <li>Deploy automatizado com Docker e CI/CD</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h4>E-commerce Responsivo</h4>
+                        <div class="company">Freelance</div>
+                        <div class="date">
+                            <i class="fas fa-code-branch"></i>
+                            2022
+                        </div>
+                        <ul>
+                            <li>Loja virtual com PHP nativo e JavaScript</li>
+                            <li>Integração com gateways de pagamento</li>
+                            <li>Painel administrativo completo</li>
+                            <li>SEO otimizado e performance melhorada</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Botões de ação -->
+    <div class="action-buttons">
+        <button class="action-btn" onclick="window.print()" title="Imprimir Currículo">
+            <i class="fas fa-print"></i>
+        </button>
+        <button class="action-btn secondary" onclick="downloadPDF()" title="Baixar PDF">
+            <i class="fas fa-download"></i>
+        </button>
+    </div>
+
+    <script>
+        // Função para imprimir
+        function printResume() {
+            window.print();
+        }
+
+        // Função para simular download PDF
+        function downloadPDF() {
+            alert('Funcionalidade de download PDF será implementada em breve!');
+            // Aqui você pode integrar uma biblioteca como jsPDF ou Puppeteer
+        }
+
+        // Efeito de scroll suave para seções
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
+        // Easter egg - Konami Code
+        let konamiCode = [];
+        const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > 10) konamiCode.shift();
+            
+            if (konamiCode.join(',') === konami.join(',')) {
+                document.body.style.filter = 'hue-rotate(180deg)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
