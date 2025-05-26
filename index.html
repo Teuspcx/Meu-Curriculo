@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mateus Silva - Profissional Multifacetado</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --dark: #0f172a;
+            --surface: #1e293b;
+            --surface-light: #334155;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --glass: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(148, 163, 184, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                linear-gradient(135deg, var(--dark) 0%, transparent 100%),
+                radial-gradient(circle at 20% 80%, var(--secondary) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--primary) 0%, transparent 50%);
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin: 2rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(18, 140, 126, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(18, 140, 126, 0.4);
+        }
+
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            color: var(--text);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .cards-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .card-subtitle {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-content ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .card-content li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .card-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .education-card {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .education-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card p {
+            color: var(--text-muted);
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--surface);
+            z-index: 1000;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .nav-button {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .cards-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+
+            .floating-whatsapp {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        .delay-5 { animation-delay: 1s; }
+
+        /* Grid dos projetos */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* Cartão do projeto */
+.project-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 1.8rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Cabeçalho do projeto */
+.project-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.project-icon {
+    font-size: 2.5rem;
+}
+
+/* Conteúdo do projeto */
+.project-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #00d9ff;
+}
+
+.project-description {
+    color: #d1d1d1;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Link do projeto */
+.project-link {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(90deg, #00d9ff, #0077ff);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    transition: background 0.3s ease;
+}
+
+.project-link:hover {
+    background: linear-gradient(90deg, #0077ff, #00d9ff);
+}
+
+/* Título da seção */
+.section-title {
+    text-align: center;
+    font-size: 2.4rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #00d9ff, #0077ff);
+    margin: 0.5rem auto 0;
+    border-radius: 999px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="noise"></div>
+    
+    <div class="scroll-indicator">
+        <div class="scroll-progress"></div>
+    </div>
+
+    <a href="#contact" class="nav-button animate-fade delay-4">Contato</a>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5562999402636" class="floating-whatsapp animate-fade delay-5" target="_blank" title="Fale comigo no WhatsApp">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-10.01 6.544c-.722-.205-2.074-1.032-2.961-2.084-.908-1.082-1.325-2.17-1.475-2.538-.15-.369-.163-.636-.109-.78.188-.66.638-1.148 1.152-1.148.149 0 .298.025.421.074.297.124.992.593 1.36.808.173.1.347.148.446-.074.644-.223.297-.868.869-1.027 1.049-.16.18-.16.223-.074.372.088.149.386.638.828 1.031.595.521 1.094.833 1.57 1.066.173.086.347.123.52.123.173 0 .347-.037.521-.123.297-.124.595-.322.893-.594.223-.223.446-.347.52-.297.074.05 1.587 1.182 1.735 1.24.149.061.297.037.372-.012.223-.124.595-.52.744-.708.149-.186.297-.31.446-.248.149.062 1.26.594 1.477.706.217.112.36.173.409.26.05.087.05.497-.111.78-.16.285-.52 1.24-2.666 1.24-2.814" fill="#fff"/>
+        </svg>
+    </a>
+
+    <section id="hero" class="header">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-fade">Mateus Silva</h1>
+                <p class="hero-subtitle animate-fade delay-1">Profissional Multifacetado & Estudante de Sistemas de Informação</p>
+                <p class="hero-description animate-fade delay-2">
+                    Profissional experiente e capacitado, comunicativo e pontual, pronto para somar na empresa. 
+                    Com experiência em gestão, vendas, atendimento ao cliente e suporte técnico.
+                </p>
+                
+                <div class="contact-grid animate-fade delay-3">
+                    <div class="contact-card">
+                        <div>📧 Email</div>
+                        <div>mh37196@gmail.com</div>
+                    </div>
+                    <div class="contact-card">
+                        <div>📱 Telefone</div>
+                        <div>(62) 99940-2636</div>
+                    </div>
+                    <div class="contact-card">
+                        <div>📍 Localização</div>
+                        <div>Itaberaí - GO</div>
+                    </div>
+                </div>
+
+                <!-- Botão Grande de WhatsApp -->
+                <a href="https://wa.me/5562999402636" class="whatsapp-btn animate-fade delay-4" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-10.01 6.544c-.722-.205-2.074-1.032-2.961-2.084-.908-1.082-1.325-2.17-1.475-2.538-.15-.369-.163-.636-.109-.78.188-.66.638-1.148 1.152-1.148.149 0 .298.025.421.074.297.124.992.593 1.36.808.173.1.347.148.446-.074.099-.223.868-.869 1.027-1.049.16-.18.16-.223.074-.372-.088-.149-.386-.638-.828-1.031-.595-.521-1.094-.833-1.57-1.066-.173-.086-.347-.123-.52-.123-.173 0-.347.037-.521.123-.297.124-.595.322-.893.594-.223.223-.446.347-.52.297-.074-.05-1.587-1.182-1.735-1.24-.149-.061-.297-.037-.372.012-.223.124-.595.52-.744.708-.149.186-.297.31-.446.248-.149-.062-1.26-.594-1.477-.706-.217-.112-.36-.173-.409-.26-.05-.087-.05-.497.111-.78.16-.285.52-1.24 2.666-1.24 2.814" fill="#fff"/>
+                    </svg>
+                    Fale comigo no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title animate-fade">Sobre Mim</h2>
+            <div class="card animate-fade delay-1">
+                <div class="card-content">
+                    <p style="font-size: 1.1rem; color: var(--text-muted); text-align: center; max-width: 800px; margin: 0 auto;">
+                        Profissional dedicado, pontual e educado, com ampla experiência em diferentes áreas. 
+                        Atualmente cursando Sistemas de Informação na UEG, buscando combinar conhecimentos 
+                        técnicos com habilidades práticas adquiridas no mercado de trabalho.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title animate-fade">Experiência Profissional</h2>
+            <div class="cards-grid">
+                <div class="card animate-fade delay-1">
+                    <h3 class="card-title">Gerente Geral</h3>
+                    <p class="card-subtitle">Bovidan Nutrição Animal LTDA</p>
+                    <p class="card-period">Abril 2023 - Setembro 2024</p>
+                    <div class="card-content">
+                        <ul>
+                            <li>Responsável pela gestão das vendas, cotação e compra de matéria-prima</li>
+                            <li>Controle de estoque e atendimento ao público para resolução de problemas</li>
+                            <li>Gerenciamento geral das operações da empresa</li>
+                            <li>Implementação de sistemas de controle e organização</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card animate-fade delay-2">
+                    <h3 class="card-title">Técnico e Vendedor</h3>
+                    <p class="card-subtitle">Imprimetek</p>
+                    <p class="card-period">Período não especificado</p>
+                    <div class="card-content">
+                        <ul>
+                            <li>Realização de visitas técnicas para manutenção de equipamentos</li>
+                            <li>Atendimento ao cliente e suporte técnico especializado</li>
+                            <li>Gestão de entregas e logística de produtos</li>
+                            <li>Atuação no setor de vendas de equipamentos e suprimentos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card animate-fade delay-3">
+                    <h3 class="card-title">Auxiliar Administrativo</h3>
+                    <p class="card-subtitle">SSA - Setor de Transportes</p>
+                    <p class="card-period">Julho 2018 - Novembro 2019</p>
+                    <div class="card-content">
+                        <ul>
+                            <li>Envio de emails e organização de documentos</li>
+                            <li>Gestão de almoxarifado e controle de estoque</li>
+                            <li>Emissão de notas fiscais e repasse para caminhoneiros</li>
+                            <li>Suporte geral nas atividades administrativas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title animate-fade">Formação Acadêmica</h2>
+            <div class="education-card animate-fade delay-1">
+                <h3>Sistemas de Informação</h3>
+                <p>UEG - Universidade Estadual de Goiás</p>
+                <p style="margin-top: 0.5rem; color: var(--accent);">Cursando</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title animate-fade">Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill-card animate-fade delay-1">
+                    <h3>🖥️ Informática</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Word</span>
+                        <span class="skill-tag">PowerPoint</span>
+                        <span class="skill-tag">Sistemas de Gestão</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card animate-fade delay-2">
+                    <h3>💼 Administrativas</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Gestão de Estoque</span>
+                        <span class="skill-tag">Atendimento ao Cliente</span>
+                        <span class="skill-tag">Controle de Vendas</span>
+                        <span class="skill-tag">Organização</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card animate-fade delay-3">
+                    <h3>🔧 Técnicas</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Suporte Técnico</span>
+                        <span class="skill-tag">Manutenção de Equipamentos</span>
+                        <span class="skill-tag">Visitas Técnicas</span>
+                        <span class="skill-tag">Resolução de Problemas</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card animate-fade delay-4">
+                    <h3>🚚 Logística</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Controle de Entregas</span>
+                        <span class="skill-tag">Gestão de Transportes</span>
+                        <span class="skill-tag">Emissão de Notas</span>
+                        <span class="skill-tag">Organização de Rotas</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card animate-fade delay-5">
+                    <h3>👔 Pessoais</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Comunicação</span>
+                        <span class="skill-tag">Pontualidade</span>
+                        <span class="skill-tag">Trabalho em Equipe</span>
+                        <span class="skill-tag">Proatividade</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section id="projects" class="section">
+    <div class="container">
+        <h2 class="section-title">🚀 Projetos</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">💻</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Sistema Informática</h3>
+                    <p class="project-description">
+                        Plataforma web full-stack com interface responsiva, backend robusto e banco de dados integrado.
+                    </p>
+                    <a href="http://sistemainformatica.ct.ws" target="_blank" class="project-link">
+                        🔗 Ver Projeto Live
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔥</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Portfólio GitHub</h3>
+                    <p class="project-description">
+                        Projetos diversos mostrando evolução técnica, códigos limpos e soluções criativas.
+                    </p>
+                    <a href="https://github.com/seuusuario" target="_blank" class="project-link">
+                        💡 Explorar Código
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">⚡</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Mais Projetos</h3>
+                    <p class="project-description">
+                        E-commerce, sistemas de gestão, landing pages, APIs e muito mais.
+                    </p>
+                    <a href="https://github.com/seuusuario" target="_blank" class="project-link">
+                        🎯 Ver Todos
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title animate-fade">Contato</h2>
+            <div class="contact-grid animate-fade delay-1" style="max-width: 600px; margin: 0 auto;">
+                <div class="contact-card">
+                    <div>📧 Email</div>
+                    <div>mh37196@gmail.com</div>
+                </div>
+                <div class="contact-card">
+                    <div>📱 Telefone</div>
+                    <div>(62) 99940-2636</div>
+                </div>
+                <div class="contact-card">
+                    <div>📍 Endereço</div>
+                    <div>Rua Coronel Previsto, Qd C Lt 17A, Vila Isabel, Itaberaí - GO</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://wa.me/5562999402636" class="whatsapp-btn animate-fade delay-2" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-10.01 6.544c-.722-.205-2.074-1.032-2.961-2.084-.908-1.082-1.325-2.17-1.475-2.538-.15-.369-.163-.636-.109-.78.188-.66.638-1.148 1.152-1.148.149 0 .298.025.421.074.297.124.992.593 1.36.808.173.1.347.148.446-.074.644-.223.297-.868.869-1.027 1.049-.16.18-.16.223-.074.372.088.149.386.638.828 1.031.595.521 1.094.833 1.57 1.066.173.086.347.123.52.123.173 0 .347-.037.521-.123.297-.124.595-.322.893-.594.223-.223.446-.347.52-.297.074.05 1.587 1.182 1.735 1.24.149.061.297.037.372-.012.223-.124.595-.52.744-.708.149-.186.297-.31.446-.248.149.062 1.26.594 1.477.706.217.112.36.173.409.26.05.087.05.497-.111.78-.16.285-.52 1.24-2.666 1.24-2.814" fill="#fff"/>
+                    </svg>
+                    Fale comigo no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.animate-fade').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
